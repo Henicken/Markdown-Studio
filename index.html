@@ -1,0 +1,213 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown to HTML Converter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <h1>Markdown to HTML Converter</h1>
+    <div id="container">
+      <div class="container">
+        <h2>Markdown Input:</h2>
+        <textarea
+          id="markdown-input"
+          placeholder="Enter your markdown here..."
+        ></textarea>
+      </div>
+      <div class="container">
+        <h2>Raw HTML Output:</h2>
+        <div id="html-output"></div>
+      </div>
+      <div class="container">
+        <h2>HTML Preview:</h2>
+        <div id="preview"></div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+ -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="A simple, stylish Markdown editor that converts Markdown into HTML and previews the result."
+    />
+
+    <title>Markdown Studio | Markdown to HTML Converter</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a href="#" class="brand" aria-label="Markdown Studio home">
+        <span class="brand-icon">M↓</span>
+        <span>Markdown<span class="brand-accent">Studio</span></span>
+      </a>
+
+      <div class="header-badge">
+        <span class="status-dot"></span>
+        Live preview
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="hero">
+        <p class="eyebrow">WRITE · CONVERT · PREVIEW</p>
+
+        <h1>Words into <span>web pages.</span></h1>
+
+        <p class="hero-description">
+          Write in Markdown. Get clean HTML. See your changes instantly.
+        </p>
+      </section>
+
+      <section class="workspace" aria-label="Markdown converter">
+        <div class="workspace-header">
+          <div>
+            <h2>Your workspace</h2>
+            <p>Everything you need, in one place.</p>
+          </div>
+
+          <button id="clear-btn" class="secondary-button" type="button">
+            Clear editor
+          </button>
+        </div>
+
+        <div class="editor-grid">
+          <!-- Markdown input -->
+          <section class="editor-panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span class="panel-icon markdown-icon">M↓</span>
+
+                <div>
+                  <h3>Markdown</h3>
+                  <p>Write your content</p>
+                </div>
+              </div>
+
+              <span class="file-label">INPUT.md</span>
+            </div>
+
+            <textarea
+              id="markdown-input"
+              spellcheck="false"
+              aria-label="Markdown input"
+              placeholder="# Hello, world!
+
+Write something in Markdown.
+
+**Bold**, *italic*, and `inline code`.
+
+- First item
+- Second item
+
+[Visit a website](https://example.com)"
+            ></textarea>
+
+            <div class="panel-footer">
+              <span id="character-count">0 characters</span>
+              <span id="word-count">0 words</span>
+            </div>
+          </section>
+
+          <!-- Raw HTML output -->
+          <section class="editor-panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span class="panel-icon html-icon">&lt;/&gt;</span>
+
+                <div>
+                  <h3>HTML output</h3>
+                  <p>Your generated markup</p>
+                </div>
+              </div>
+
+              <button id="copy-html-btn" class="text-button" type="button">
+                Copy HTML
+              </button>
+            </div>
+
+            <pre
+              id="html-output"
+              class="code-output"
+              aria-label="Generated HTML output"
+            ></pre>
+
+            <div class="panel-footer">
+              <span id="line-count">0 lines</span>
+              <span>HTML</span>
+            </div>
+          </section>
+
+          <!-- Rendered preview -->
+          <section class="editor-panel preview-panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span class="panel-icon preview-icon">◉</span>
+
+                <div>
+                  <h3>Live preview</h3>
+                  <p>See the final result</p>
+                </div>
+              </div>
+
+              <span class="file-label">PREVIEW</span>
+            </div>
+
+            <div id="preview" class="preview-content"></div>
+
+            <div class="panel-footer">
+              <span>Rendered result</span>
+              <span class="preview-status">Live</span>
+            </div>
+          </section>
+        </div>
+
+        <p
+          id="status-message"
+          class="status-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </section>
+
+      <section class="features">
+        <article class="feature-card">
+          <span class="feature-number">01</span>
+          <h3>Write naturally</h3>
+          <p>Use familiar Markdown syntax without worrying about HTML tags.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-number">02</span>
+          <h3>Convert instantly</h3>
+          <p>See your generated HTML update as you type.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-number">03</span>
+          <h3>Preview everything</h3>
+          <p>Check your formatted content before using the HTML elsewhere.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Made for curious minds and people who love clean code.</p>
+      <p>Markdown Studio · Built with HTML, CSS & JavaScript</p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

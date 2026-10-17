@@ -1,0 +1,862 @@
+/* * {
+     box-sizing: border-box;
+}
+ body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+}
+ #markdown-input {
+     width: 100%;
+     height: 100px;
+}
+ #html-output, #preview {
+     height: 100px;
+     display: inline-block;
+     width: 100%;
+     border: 1px solid #ccc;
+     padding: 10px;
+     margin: auto;
+     white-space: pre-wrap;
+     background-color: #f9f9f9;
+}
+ @media (min-width: 600px) {
+     #markdown-input, #html-output, #preview {
+         height: 200px;
+         margin: 0;
+    }
+     #container {
+         display: flex;
+         justify-content: space-evenly;
+         gap: 10px;
+    }
+} */
+
+
+/* ------------------------------
+   1. Global styles
+------------------------------ */
+
+:root {
+  color-scheme: dark;
+
+  --background: #0b1020;
+  --surface: #11182a;
+  --surface-light: #172137;
+  --border: #26334b;
+
+  --text-primary: #edf2ff;
+  --text-secondary: #9ba9c4;
+
+  --accent: #a78bfa;
+  --accent-hover: #c4b5fd;
+  --green: #6ee7b7;
+  --blue: #7dd3fc;
+
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(124, 58, 237, 0.12),
+      transparent 35rem
+    ),
+    var(--background);
+
+  color: var(--text-primary);
+  font-family:
+    Inter,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  line-height: 1.6;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: white;
+  background: #6d4acb;
+}
+
+
+/* ------------------------------
+   2. Site header
+------------------------------ */
+
+.site-header {
+  min-height: 76px;
+  padding: 16px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(11, 16, 32, 0.8);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+}
+
+.brand-icon {
+  width: 39px;
+  height: 39px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  border-radius: 11px;
+
+  color: var(--accent);
+  background: rgba(167, 139, 250, 0.1);
+
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.brand-accent {
+  color: var(--accent);
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+  background: var(--green);
+
+  box-shadow: 0 0 10px rgba(110, 231, 183, 0.5);
+}
+
+
+/* ------------------------------
+   3. Main introduction
+------------------------------ */
+
+.main-content {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.hero {
+  padding: 70px 0 42px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  margin: 0;
+
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: var(--accent);
+}
+
+.hero-description {
+  max-width: 570px;
+  margin: 18px auto 0;
+
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+
+/* ------------------------------
+   4. Workspace
+------------------------------ */
+
+.workspace {
+  padding: 24px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: rgba(17, 24, 42, 0.85);
+
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.02) inset;
+}
+
+.workspace-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-bottom: 22px;
+}
+
+.workspace-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.workspace-header p {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.secondary-button {
+  padding: 9px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  color: var(--text-primary);
+  background: var(--surface-light);
+
+  font-size: 0.82rem;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.secondary-button:hover {
+  border-color: var(--accent);
+  background: #202b43;
+}
+
+
+/* ------------------------------
+   5. Editor layout
+------------------------------ */
+
+.editor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.editor-panel {
+  min-width: 0;
+  min-height: 430px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  background: #0e1525;
+}
+
+.panel-header {
+  min-height: 76px;
+  padding: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-width: 0;
+}
+
+.panel-title h3 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.panel-title p {
+  margin: 3px 0 0;
+
+  color: var(--text-secondary);
+  font-size: 0.73rem;
+}
+
+.panel-icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.markdown-icon {
+  color: var(--accent);
+  background: rgba(167, 139, 250, 0.12);
+}
+
+.html-icon {
+  color: var(--blue);
+  background: rgba(125, 211, 252, 0.12);
+}
+
+.preview-icon {
+  color: var(--green);
+  background: rgba(110, 231, 183, 0.12);
+}
+
+.file-label {
+  color: #7887a4;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.text-button {
+  padding: 6px 9px;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  color: var(--accent);
+  background: transparent;
+
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+
+.text-button:hover {
+  border-color: var(--border);
+  background: var(--surface-light);
+}
+
+
+/* ------------------------------
+   6. Markdown editor
+------------------------------ */
+
+#markdown-input {
+  width: 100%;
+  min-width: 200px;
+  min-height: 290px;
+  padding: 18px;
+
+  flex: 1;
+  resize: both;
+  overflow: auto;
+
+  border: none;
+  outline: none;
+
+  color: #dbe5ff;
+  background: transparent;
+
+  font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+  font-size: 0.84rem;
+  line-height: 1.85;
+  tab-size: 2;
+}
+
+#markdown-input::placeholder {
+  color: #61708c;
+  opacity: 1;
+}
+
+#markdown-input:focus-visible {
+  outline: none;
+}
+
+
+/* ------------------------------
+   7. Raw HTML output
+------------------------------ */
+
+.code-output {
+  width: 100%;
+  flex: 1;
+
+  min-height: 290px;
+  max-height: 500px;
+  margin: 0;
+  padding: 18px;
+
+  overflow: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+
+  color: #a5d6ff;
+  background: transparent;
+
+  font-family:
+    "Cascadia Code",
+    Consolas,
+    "Courier New",
+    monospace;
+
+  font-size: 0.8rem;
+  line-height: 1.85;
+}
+
+
+/* ------------------------------
+   8. Live preview
+------------------------------ */
+
+.preview-content {
+  flex: 1;
+  min-height: 290px;
+
+  padding: 18px;
+
+  overflow-wrap: anywhere;
+  color: #dce5f8;
+
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.preview-content:empty::before {
+  content: "Your formatted content will appear here.";
+
+  display: block;
+  margin-top: 5px;
+
+  color: #61708c;
+  font-style: italic;
+}
+
+.preview-content h1,
+.preview-content h2,
+.preview-content h3,
+.preview-content h4,
+.preview-content h5,
+.preview-content h6 {
+  margin: 1.2em 0 0.55em;
+
+  color: #f4f6ff;
+  line-height: 1.3;
+}
+
+.preview-content h1 {
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid var(--border);
+
+  font-size: 1.8rem;
+}
+
+.preview-content h2 {
+  padding-bottom: 8px;
+
+  border-bottom: 1px solid var(--border);
+
+  font-size: 1.4rem;
+}
+
+.preview-content h3 {
+  font-size: 1.15rem;
+}
+
+.preview-content p {
+  margin: 0.8em 0;
+}
+
+.preview-content a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.preview-content a:hover {
+  color: var(--accent-hover);
+}
+
+.preview-content img {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+  margin: 12px 0;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.preview-content blockquote {
+  margin: 16px 0;
+  padding: 4px 0 4px 15px;
+
+  border-left: 3px solid var(--accent);
+  border-radius: 0 5px 5px 0;
+
+  color: var(--text-secondary);
+  background: rgba(167, 139, 250, 0.05);
+}
+
+.preview-content ul,
+.preview-content ol {
+  padding-left: 25px;
+}
+
+.preview-content li {
+  margin: 5px 0;
+}
+
+.preview-content hr {
+  margin: 22px 0;
+
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.preview-content code {
+  padding: 3px 6px;
+
+  border: 1px solid #293650;
+  border-radius: 5px;
+
+  color: #f0abfc;
+  background: #182137;
+
+  font-family:
+    "Cascadia Code",
+    Consolas,
+    monospace;
+
+  font-size: 0.85em;
+}
+
+.preview-content pre {
+  padding: 15px;
+  overflow-x: auto;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  background: #080d18;
+}
+
+.preview-content pre code {
+  padding: 0;
+
+  border: none;
+  border-radius: 0;
+
+  color: #b7c9e8;
+  background: transparent;
+}
+
+.preview-content input[type="checkbox"] {
+  margin-right: 7px;
+  accent-color: var(--accent);
+}
+
+.preview-content del {
+  color: var(--text-secondary);
+}
+
+.preview-content table {
+  width: 100%;
+  margin: 15px 0;
+
+  border-collapse: collapse;
+
+  font-size: 0.8rem;
+}
+
+.preview-content th,
+.preview-content td {
+  padding: 8px;
+
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.preview-content th {
+  background: var(--surface-light);
+}
+
+
+/* ------------------------------
+   9. Panel footers
+------------------------------ */
+
+.panel-footer {
+  min-height: 39px;
+  padding: 9px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  border-top: 1px solid var(--border);
+
+  color: #71819e;
+  font-size: 0.7rem;
+}
+
+.preview-status {
+  color: var(--green);
+}
+
+
+/* ------------------------------
+   10. Status messages
+------------------------------ */
+
+.status-message {
+  min-height: 20px;
+  margin: 12px 0 0;
+
+  color: var(--green);
+  font-size: 0.8rem;
+}
+
+
+/* ------------------------------
+   11. Feature cards
+------------------------------ */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+
+  padding: 55px 0;
+}
+
+.feature-card {
+  padding: 23px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  background: rgba(17, 24, 42, 0.6);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: #554582;
+}
+
+.feature-number {
+  color: var(--accent);
+
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.feature-card h3 {
+  margin: 13px 0 7px;
+  font-size: 1rem;
+}
+
+.feature-card p {
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.8;
+}
+
+
+/* ------------------------------
+   12. Footer
+------------------------------ */
+
+.site-footer {
+  padding: 24px 5%;
+
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.77rem;
+}
+
+.site-footer p {
+  margin: 5px 0;
+}
+
+
+/* ------------------------------
+   13. Responsive design
+------------------------------ */
+
+@media (max-width: 1050px) {
+  .editor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preview-panel {
+    grid-column: 1 / -1;
+  }
+
+  .preview-content {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 14px 5%;
+  }
+
+  .main-content {
+    padding: 0 4%;
+  }
+
+  .hero {
+    padding: 50px 0 30px;
+  }
+
+  .hero h1 {
+    letter-spacing: -1px;
+  }
+
+  .workspace {
+    padding: 14px;
+    border-radius: 15px;
+  }
+
+  .workspace-header {
+    align-items: flex-start;
+  }
+
+  .editor-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .preview-panel {
+    grid-column: auto;
+  }
+
+  .editor-panel {
+    min-height: 370px;
+  }
+
+  #markdown-input,
+  .code-output,
+  .preview-content {
+    min-height: 260px;
+  }
+
+  .features {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 35px 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-badge {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
+
+  .brand {
+    gap: 8px;
+    font-size: 0.95rem;
+  }
+
+  .brand-icon {
+    width: 33px;
+    height: 33px;
+  }
+
+  .workspace-header {
+    flex-direction: column;
+  }
+
+  .panel-header {
+    padding: 11px;
+  }
+
+  .panel-title {
+    gap: 8px;
+  }
+
+  .file-label {
+    font-size: 0.58rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
